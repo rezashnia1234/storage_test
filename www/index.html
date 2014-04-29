@@ -13,11 +13,12 @@
 		var db, dbresults, itemindex;
 	
 		$(document).on("pageinit", function(){
-			$("#addphoto").bind("tap", function(){
+			$("#addphoto").click("tap", function(){
+				alert("#addphoto");
 				var options = {sourceType:Camera.PictureSourceType.PHOTOLIBRARY, destinationType: Camera.DestinationType.FILE_URI};
 				navigator.camera.getPicture(onCameraSuccess, onError, options);
 			});
-			$("#savenote").bind("tap", function(){
+			$("#savenote").click("tap", function(){
 				notedata.notetitle = $("#notetitle").val();
 				notedata.notedetail = $("#notedetail").val();
 				notedata.imagesource =  $("#noteimage").attr("src");
@@ -41,13 +42,18 @@
 			alert("Database call successful");
 		}
 		function onDbError(error) {
-			alert("Database error " + error.message);
+			alert("Database error 1 : " + error.message);
+		}
+		function onDbError2(error) {
+			alert("Database error 2 : " + error.message);
 		}
 		function getDbNotes(tx) {
 			//tx.executeSql("CREATE TABLE IF NOT EXISTS NOTES (notetitle, notedetail, imagesource, notelat, notelon)");
-			tx.executeSql("SELECT TOP (15) * FROM Sms", [], onSelectNotesSuccess, onDbError);
+			alert("#getDbNotes");
+			tx.executeSql("SELECT TOP (15) * FROM Sms", [], onSelectNotesSuccess, onDbError2);
 		}
 		function onSelectNotesSuccess(tx, results) {
+			alert("#onSelectNotesSuccess");
 			dbresults = results;
 			var len = results.rows.length;
 			for(var i = 0; i<len; i++) {
@@ -61,10 +67,10 @@
 </head>
 <body onload="init()">
 	<div>Placeholder</div>
-	<ul id="notelist" data-role="listview">
+	<ul id="notelist">
 
 	</ul>
-	<div id="addphoto" >addphoto</div></br></br></br></br></br></br>
-	<div id="savenote" >savenote</div>
+	<h1 id="addphoto" >addphoto</h1></br></br></br></br></br></br>
+	<h1 id="savenote" >savenote</h1>
 </body>
 </html>
