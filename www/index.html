@@ -36,7 +36,7 @@
 			dbresults = results;
 			var len = results.rows.length;
 			for(var i = 0; i<len; i++) {
-				$("#notelist").append("<li><a href=#newnote onclick='itemindex=" + i + ";'>" + results.rows.item(i).notetitle + "</a></li>");
+				$("#notelist").append("<li><a href=#newnote onclick='itemindex=" + i + ";'>" + results.rows.item(i).Message + "</a></li>");
 			}
 			$("#notelist").listview("refresh");
 		}
@@ -46,5 +46,8 @@
 </head>
 <body onload="init()">
 	<div>Placeholder</div>
+	<ul id="notelist" data-role="listview">
+
+	</ul>
 </body>
 </html>
