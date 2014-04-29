@@ -12,6 +12,21 @@
 	<script>
 		var db, dbresults, itemindex;
 	
+		$(document).on("pageinit", function(){
+			$("#addphoto").bind("tap", function(){
+				var options = {sourceType:Camera.PictureSourceType.PHOTOLIBRARY, destinationType: Camera.DestinationType.FILE_URI};
+				navigator.camera.getPicture(onCameraSuccess, onError, options);
+			});
+			$("#savenote").bind("tap", function(){
+				notedata.notetitle = $("#notetitle").val();
+				notedata.notedetail = $("#notedetail").val();
+				notedata.imagesource =  $("#noteimage").attr("src");
+				notedata.notelat = lat;
+				notedata.notelon = lon;
+				db.transaction(saveNote, onDbError, onDbSuccess);
+			});
+		});
+	
 		function init() {
 			document.addEventListener("deviceready", onDeviceReady, false);
 		}
@@ -49,5 +64,7 @@
 	<ul id="notelist" data-role="listview">
 
 	</ul>
+	<div id="addphoto" >addphoto</div></br></br></br></br></br></br>
+	<div id="savenote" >savenote</div>
 </body>
 </html>
