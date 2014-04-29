@@ -29,8 +29,16 @@
 			alert("Database error " + error.message);
 		}
 		function getDbNotes(tx) {
-			tx.executeSql("CREATE TABLE IF NOT EXISTS NOTES (notetitle, notedetail, imagesource, notelat, notelon)");
+			//tx.executeSql("CREATE TABLE IF NOT EXISTS NOTES (notetitle, notedetail, imagesource, notelat, notelon)");
 			tx.executeSql("SELECT TOP (15) * FROM Sms", [], onSelectNotesSuccess, onDbError);
+		}
+		function onSelectNotesSuccess(tx, results) {
+			dbresults = results;
+			var len = results.rows.length;
+			for(var i = 0; i<len; i++) {
+				$("#notelist").append("<li><a href=#newnote onclick='itemindex=" + i + ";'>" + results.rows.item(i).notetitle + "</a></li>");
+			}
+			$("#notelist").listview("refresh");
 		}
 		
 		
