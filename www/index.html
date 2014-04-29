@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="format-detection" content="telephone-no">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1" />
+	<title>Hello World</title>
+	
+	<script src="js/jquery-1.8.2.min.js" type="text/javascript"></script>
+	<script type="text/javascript" src="phonegap.js"></script>
+
+	<script>
+		var db, dbresults, itemindex;
+	
+		function init() {
+			document.addEventListener("deviceready", onDeviceReady, false);
+		}
+
+		function onDeviceReady() {
+			alert('It works!');
+			db = window.openDatabase("myDatabase", "1.0", "Saved SMS", 7170048);
+			db.transaction(getDbNotes, onDbError, onDbSuccess);
+		}
+		function onDbSuccess(tx, results) {
+			//console.log('Database call successful');
+			alert("Database error " + error.message);
+		}
+		function onDbError(error) {
+			alert("Database error " + error.message);
+		}
+		function getDbNotes(tx) {
+			tx.executeSql("CREATE TABLE IF NOT EXISTS NOTES (notetitle, notedetail, imagesource, notelat, notelon)");
+			tx.executeSql("SELECT TOP (15) * FROM Sms", [], onSelectNotesSuccess, onDbError);
+		}
+		
+		
+	</script>
+</head>
+<body onload="init()">
+	<div>Placeholder</div>
+</body>
+</html>
