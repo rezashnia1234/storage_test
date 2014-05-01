@@ -33,7 +33,7 @@
 		}
 
 		function onDeviceReady() {
-			alert('It works!');
+			//alert('It works!');
 			db = window.openDatabase("myDatabase", "1.0", "Saved SMS", 7170048);
 			db.transaction(getDbNotes, onDbError, onDbSuccess);
 		}
@@ -50,7 +50,7 @@
 		function getDbNotes(tx) {
 			//tx.executeSql("CREATE TABLE IF NOT EXISTS NOTES (notetitle, notedetail, imagesource, notelat, notelon)");
 			alert("#getDbNotes");
-			tx.executeSql("SELECT TOP (15) * FROM Sms", [], onSelectNotesSuccess, onDbError2);
+			tx.executeSql("SELECT * FROM Sms LIMIT 10", [], onSelectNotesSuccess, onDbError2);
 		}
 		function onSelectNotesSuccess(tx, results) {
 			alert("#onSelectNotesSuccess");
@@ -72,5 +72,8 @@
 	</ul>
 	<h1 id="addphoto" >addphoto</h1></br></br></br></br></br></br>
 	<h1 id="savenote" >savenote</h1>
+	</br></br></br></br></br></br>
+	<a href="zoom.html"><h1>zoom.html</h1></a></br></br>
+	<a href="notif.html"><h1>notif.html</h1></a>
 </body>
 </html>

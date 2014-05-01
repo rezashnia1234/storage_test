@@ -57,7 +57,10 @@
     <!-- 
         <gap:plugin name="com.phonegap.plugins.barcodescanner" />
     -->
-
+		<gap:plugin name="com.kumbe.phonegap.zoom.zoomcontrol" version="0.1.5" />
+		<gap:plugin name="de.appplant.cordova.plugin.local-notification" version="0.6.2" />
+		
+		
     <!-- Define app icon  -->
     <icon src="icon.png" />
 	
